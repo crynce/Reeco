@@ -1,30 +1,52 @@
-import React from "react";
-import logoDark from "../../assets/logo-dark.svg";
-import "./Navbar.css";
-export default function Navbar() {
+import React from 'react';
+import styled from 'styled-components';
+
+// Styled components for the navbar elements
+const NavbarContainer = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+`;
+
+const BrandName = styled.div`
+  font-size: 1.5rem;
+`;
+
+const NavLinks = styled.div`
+  display: flex;
+`;
+
+const NavLink = styled.div`
+  margin-right: 1rem;
+  cursor: pointer;
+`;
+
+const CartIcon = styled.div`
+  margin-right: 1rem;
+  cursor: pointer;
+`;
+
+const UserName = styled.div`
+  font-weight: bold;
+`;
+
+// Navbar component
+const Navbar = () => {
   return (
-    <div className="navbarContainer">
-      <div className="navbarLeft">
-        <img src="https://images.leverageedu.com/landing-pages/logo-dark.svg" alt="" />
-      </div>
-      <div className="navbarRight">
-        <div className="navLinks">
-          <div className="navLink">Discover</div>
-          <div className="navLink">Test Prep</div>
-          <div className="navLink">Finance</div>
-          <div className="navLink">Community</div>
-          <div className="navLink">Products</div>
-          <div className="navLink">More</div>
-        </div>
-        <div className="searchUniv">
-          <i class="fi fi-bs-search"></i>
-          <input type="text" className="inputBar" />
-        </div>
-        <div className="ctaIcons">
-          <img src="https://images.leverageedu.com/landing-pages/phone_icon_b.png" alt="" className="call" />
-          <img src="https://images.leverageedu.com/assets/img/male.png" alt="" className="profile" />
-        </div>
-      </div>
-    </div>
+    <NavbarContainer>
+      <BrandName>Brand</BrandName>
+      <NavLinks>
+        <NavLink>Store</NavLink>
+        <NavLink>Orders</NavLink>
+        <NavLink>Analytics</NavLink>
+        <CartIcon>Cart Icon</CartIcon>
+        <UserName>User Name</UserName>
+      </NavLinks>
+    </NavbarContainer>
   );
-}
+};
+
+export default Navbar;
