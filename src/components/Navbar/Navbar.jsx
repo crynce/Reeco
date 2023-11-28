@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//new branch 
 // Styled components for the navbar elements
 const NavbarContainer = styled.nav`
   display: flex;
