@@ -35,9 +35,8 @@ const SearchCont = styled.div`
 `;
 const SearchBar = styled.input`
   border: none;
-  $:focus {
-    border: none;
-  }
+  outline: none;
+  width: 80%;
 `;
 
 export default function OrderDetails() {

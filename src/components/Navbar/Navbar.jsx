@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import CartIcon from "../../assets/icons8-cart-50.png";
+import DownArrow from "../../assets/icons8-down-arrow-50.png";
 //new branch
 // Styled components for the navbar elements
 const NavbarContainer = styled.nav`
@@ -24,13 +26,15 @@ export const PaddingUni = styled.div`
   align-items: center;
   background-color: #1e633f;
   // color: #fff;
-  padding: 1rem 4rem;
+  padding: 1rem 4rem 7px 4rem;
 `;
 
 const NavLink = styled.div`
   margin-right: 1rem;
   cursor: pointer;
   color: white;
+  display: flex;
+  align-items: center;
 `;
 const LeftLinks = styled.div`
   display: flex;
@@ -57,8 +61,13 @@ const Navbar = () => {
           <NavLink>Analytics</NavLink>
         </LeftLinks>
         <RightLinks>
-          <NavLink>Hello, user</NavLink>
-          <NavLink>Cart Icon</NavLink>
+          <NavLink>
+            <img src={CartIcon} height="25px" width="25px" />
+          </NavLink>
+          <NavLink>
+            <span>Hello, James</span>
+            <img src={DownArrow} color="white" height="20px" width="20px" />
+          </NavLink>
         </RightLinks>
       </PaddingUni>
     </NavLinks>
