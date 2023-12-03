@@ -117,32 +117,39 @@ const TableComp = () => {
             <TableData>{row.quantity}</TableData>
             <TableData>{row.total}</TableData>
             <TableDataStatus>
-              {row.status && (
                 <StatusUpdate
                   $approved={row.status === "approved"}
                   $missing={row.status === "missing"}
                   $edit={row.status === "edit"}
+                  style={{ flex: "1.5" }}
                 >
                   {row.status}
                 </StatusUpdate>
-              )}
-              <img
-                height="10px"
-                width="10px"
-                color="#9b9797"
-                src={Tick}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => statusUpdateHandler(e, row, "approved")}
-              />
-              <img
-                height="10px"
-                width="10px"
-                src={Close}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => statusUpdateHandler(e, row, "missing")}
-              />
               <div
-                style={{ cursor: "pointer" }}
+                style={{
+                  flex: "1",
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
+              >
+                <img
+                  height="10px"
+                  width="10px"
+                  color="#9b9797"
+                  src={Tick}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => statusUpdateHandler(e, row, "approved")}
+                />
+                <img
+                  height="10px"
+                  width="10px"
+                  src={Close}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => statusUpdateHandler(e, row, "missing")}
+                />
+              </div>
+              <div
+                style={{ cursor: "pointer", flex: "1" }}
                 onClick={(e) => statusUpdateHandler(e, row, "edit")}
               >
                 Edit
