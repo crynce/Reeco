@@ -59,13 +59,22 @@ const TableDataStatus = styled(TableData)`
   align-items: center;
 `;
 const StatusUpdate = styled.div`
-  background: ${(props) => (props.$primary ? "#1e633f" : "white")};
-  color: ${(props) => (props.$primary ? "white" : "#1e633f")};
-
+  background: ${(props) => {
+    if (props.$approved) {
+      return "#1e633f";
+    }
+    if (props.$missing) {
+      return "red";
+    }
+    if (props.$edit) {
+      return "#f66d44";
+    }
+  }};
+  color: black;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid #1e633f;
+  border: 2px solid white;
   border-radius: 50px;
   cursor: pointer;
 `;
@@ -108,7 +117,15 @@ const TableComp = () => {
             <TableData>{row.quantity}</TableData>
             <TableData>{row.total}</TableData>
             <TableDataStatus>
-              {row.status && <StatusUpdate $primary>{row.status}</StatusUpdate>}
+              {row.status && (
+                <StatusUpdate
+                  $approved={row.status === "approved"}
+                  $missing={row.status === "missing"}
+                  $edit={row.status === "edit"}
+                >
+                  {row.status}
+                </StatusUpdate>
+              )}
               <img
                 height="10px"
                 width="10px"
