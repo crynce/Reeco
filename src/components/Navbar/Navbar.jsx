@@ -1,15 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-
-//new branch 
+import React from "react";
+import styled from "styled-components";
+//new branch
 // Styled components for the navbar elements
 const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #333;
-  color: #fff;
 `;
 
 const BrandName = styled.div`
@@ -18,35 +14,54 @@ const BrandName = styled.div`
 
 const NavLinks = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const PaddingUni = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e633f;
+  // color: #fff;
+  padding: 1rem 4rem;
 `;
 
 const NavLink = styled.div`
   margin-right: 1rem;
   cursor: pointer;
+  color: white;
 `;
-
-const CartIcon = styled.div`
-  margin-right: 1rem;
-  cursor: pointer;
+const LeftLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4rem;
 `;
-
-const UserName = styled.div`
-  font-weight: bold;
+const RightLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4rem;
 `;
 
 // Navbar component
 const Navbar = () => {
   return (
-    <NavbarContainer>
-      <BrandName>Brand</BrandName>
-      <NavLinks>
-        <NavLink>Store</NavLink>
-        <NavLink>Orders</NavLink>
-        <NavLink>Analytics</NavLink>
-        <CartIcon>Cart Icon</CartIcon>
-        <UserName>User Name</UserName>
-      </NavLinks>
-    </NavbarContainer>
+    <NavLinks>
+      <PaddingUni>
+        <LeftLinks>
+          <NavLink>
+            <BrandName>Reeco</BrandName>
+          </NavLink>
+          <NavLink>Store</NavLink>
+          <NavLink>Orders</NavLink>
+          <NavLink>Analytics</NavLink>
+        </LeftLinks>
+        <RightLinks>
+          <NavLink>Hello, user</NavLink>
+          <NavLink>Cart Icon</NavLink>
+        </RightLinks>
+      </PaddingUni>
+    </NavLinks>
   );
 };
 
