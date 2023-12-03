@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Avocado from "../../../assets/Avocado.jpg";
 import Tick from "../../../assets/tick.png";
 import Close from "../../../assets/close.png";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { updateStatus } from "../../../store/statusUpdateSlice";
 const data = [
   {
     productName: "Product 1",
@@ -71,7 +71,17 @@ const StatusUpdate = styled.div`
 `;
 
 const TableComp = () => {
+  const dispatch = useDispatch();
   const initVal = useSelector((state) => state.statusUpdate);
+  //handlers
+  const statusUpdateHandler = (e, obj, statusVal) => {
+    dispatch(
+      updateStatus({
+        ...obj,
+        status: statusVal,
+      })
+    );
+  };
   console.log(initVal, "initVal");
   return (
     <Table>
@@ -98,21 +108,28 @@ const TableComp = () => {
             <TableData>{row.quantity}</TableData>
             <TableData>{row.total}</TableData>
             <TableDataStatus>
-              <StatusUpdate $primary>{row.status}</StatusUpdate>
+              {row.status && <StatusUpdate $primary>{row.status}</StatusUpdate>}
               <img
                 height="10px"
                 width="10px"
                 color="#9b9797"
                 src={Tick}
                 style={{ cursor: "pointer" }}
+                onClick={(e) => statusUpdateHandler(e, row, "approved")}
               />
               <img
                 height="10px"
                 width="10px"
                 src={Close}
                 style={{ cursor: "pointer" }}
+                onClick={(e) => statusUpdateHandler(e, row, "missing")}
               />
-              <div style={{ cursor: "pointer" }}>Edit</div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={(e) => statusUpdateHandler(e, row, "edit")}
+              >
+                Edit
+              </div>
               {/* <img src={Tick} height: "30px" width: "30px"/> */}
             </TableDataStatus>
           </TableRow>

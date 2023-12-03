@@ -7,7 +7,7 @@ const initialState = [
     price: "$20",
     quantity: "2",
     total: "$40",
-    status: "missing",
+    status: "",
   },
   {
     productName: "Product 2",
@@ -15,7 +15,7 @@ const initialState = [
     price: "$30",
     quantity: "3",
     total: "$90",
-    status: "approved",
+    status: "",
   },
   {
     productName: "Product 3",
@@ -23,7 +23,7 @@ const initialState = [
     price: "$25",
     quantity: "1",
     total: "$25",
-    status: "missing urgently",
+    status: "",
   },
   {
     productName: "Product 4",
@@ -31,7 +31,7 @@ const initialState = [
     price: "$15",
     quantity: "5",
     total: "$75",
-    status: "approved",
+    status: "",
   },
   {
     productName: "Product 5",
@@ -39,7 +39,7 @@ const initialState = [
     price: "$40",
     quantity: "2",
     total: "$80",
-    status: "missing",
+    status: "",
   },
   {
     productName: "Product 6",
@@ -47,7 +47,7 @@ const initialState = [
     price: "$22",
     quantity: "3",
     total: "$66",
-    status: "missing urgently",
+    status: "",
   },
   {
     productName: "Product 7",
@@ -55,7 +55,7 @@ const initialState = [
     price: "$18",
     quantity: "4",
     total: "$72",
-    status: "approved",
+    status: "",
   },
   {
     productName: "Product 8",
@@ -63,7 +63,7 @@ const initialState = [
     price: "$35",
     quantity: "2",
     total: "$70",
-    status: "missing",
+    status: "",
   },
   {
     productName: "Product 9",
@@ -71,7 +71,7 @@ const initialState = [
     price: "$28",
     quantity: "3",
     total: "$84",
-    status: "approved",
+    status: "",
   },
   {
     productName: "Product 10",
@@ -79,7 +79,7 @@ const initialState = [
     price: "$50",
     quantity: "1",
     total: "$50",
-    status: "missing urgently",
+    status: "",
   },
 ];
 console.log(initialState);
@@ -91,6 +91,19 @@ const statusUpdateSlice = createSlice({
   reducers: {
     updateStatus: (state, action) => {
       console.log(current(state), "state");
+      console.log(action.payload, "payload");
+      const itemIndex = state.findIndex(
+        (curr) => curr.productName === action.payload.productName
+      );
+      if (action.payload.status == "approved") {
+        state[itemIndex].status = "approved";
+      }
+      if (action.payload.status == "missing") {
+        state[itemIndex].status = "missing";
+      }
+      if (action.payload.status == "edit") {
+        state[itemIndex].status = "edit";
+      }
     },
     // increment: (state) => {
     //   state.value += 1;

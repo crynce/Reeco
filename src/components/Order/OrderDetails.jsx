@@ -8,8 +8,10 @@ import TableComp from "./Table/TableComp";
 // import SearchIcon from "@mui/icons-material/Search";
 const OrderDetCard = styled(Card)`
   justify-content: space-between;
+  margin-bottom: 0;
 `;
 const TableDetCard = styled(Card)`
+  margin-top: 0;
   justify-content: space-between;
 `;
 
