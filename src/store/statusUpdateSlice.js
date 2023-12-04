@@ -85,7 +85,7 @@ const initialState = [
 console.log(initialState);
 
 const statusUpdateSlice = createSlice({
-  name: "counter",
+  name: "statusUpdate",
   initialState: initialState,
 
   reducers: {
@@ -98,8 +98,11 @@ const statusUpdateSlice = createSlice({
       if (action.payload.status == "approved") {
         state[itemIndex].status = "approved";
       }
-      if (action.payload.status == "missing") {
-        state[itemIndex].status = "missing";
+      if (action.payload.status == "Missing urgently") {
+        state[itemIndex].status = "Missing urgently";
+      }
+      if (action.payload.status == "Missing") {
+        state[itemIndex].status = "Missing";
       }
       if (action.payload.status == "edit") {
         state[itemIndex].status = "edit";

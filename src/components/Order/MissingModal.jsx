@@ -3,6 +3,9 @@ import { Card } from "./OrderSummary";
 import styled from "styled-components";
 import close from "../../assets/close.png";
 import { PrimaryButton } from "../Header/Header";
+import { manageOverlay } from "../../store/overlayModal";
+import { useDispatch, useSelector } from "react-redux";
+import { updateStatus } from "../../store/statusUpdateSlice";
 
 const Modal = styled(Card)`
   min-width: 200px;
@@ -23,6 +26,28 @@ const OverlayDiv = styled.div`
 `;
 
 export default function MissingModal() {
+  const dispatch = useDispatch();
+  const initVal = useSelector((state) => state.overlay);
+  console.log(initVal, "shobhit");
+  //handlers
+  const closeHandler = (e, val) => {
+    dispatch(manageOverlay(false));
+    if (val === "yes") {
+      dispatch(
+        updateStatus({
+          ...initVal.prod,
+          status: "Missing urgently",
+        })
+      );
+    } else {
+      dispatch(
+        updateStatus({
+          ...initVal.prod,
+          status: "Missing",
+        })
+      );
+    }
+  };
   return (
     <>
       <OverlayDiv>
@@ -40,20 +65,24 @@ export default function MissingModal() {
               width="10px"
               src={close}
               style={{ cursor: "pointer" }}
+              onClick={closeHandler}
             />
           </div>
 
-                  <p>Is 'Chicken breast fillets, Boneless......' urgent?</p>
-                  <div
+          <p>Is 'Chicken breast fillets, Boneless......' urgent?</p>
+          <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
             }}
-                  >
-                      
-          <PrimaryButton>No</PrimaryButton>
-          <PrimaryButton $primary>Yes</PrimaryButton>
+          >
+            <PrimaryButton onClick={(e) => closeHandler(e, "no")}>
+              No
+            </PrimaryButton>
+            <PrimaryButton onClick={(e) => closeHandler(e, "yes")} $primary>
+              Yes
+            </PrimaryButton>
           </div>
         </Modal>
       </OverlayDiv>

@@ -5,6 +5,7 @@ import Tick from "../../../assets/tick.png";
 import Close from "../../../assets/close.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateStatus } from "../../../store/statusUpdateSlice";
+import { manageOverlay } from "../../../store/overlayModal";
 const data = [
   {
     productName: "Product 1",
@@ -63,10 +64,10 @@ const StatusUpdate = styled.div`
     if (props.$approved) {
       return "#1e633f";
     }
-    if (props.$missing) {
+    if (props.$missingurg) {
       return "red";
     }
-    if (props.$edit) {
+    if (props.$missing) {
       return "#f66d44";
     }
   }};
@@ -84,12 +85,18 @@ const TableComp = () => {
   const initVal = useSelector((state) => state.statusUpdate);
   //handlers
   const statusUpdateHandler = (e, obj, statusVal) => {
-    dispatch(
-      updateStatus({
-        ...obj,
-        status: statusVal,
-      })
-    );
+    if (statusVal !== "missing") {
+      dispatch(
+        updateStatus({
+          ...obj,
+          status: statusVal,
+        })
+      );
+    }
+    if (statusVal === "missing") {
+      dispatch(manageOverlay({ prod: obj, overlayStatus: true }));
+    }
+    console.log("dispatched");
   };
   console.log(initVal, "initVal");
   return (
@@ -117,14 +124,15 @@ const TableComp = () => {
             <TableData>{row.quantity}</TableData>
             <TableData>{row.total}</TableData>
             <TableDataStatus>
-                <StatusUpdate
-                  $approved={row.status === "approved"}
-                  $missing={row.status === "missing"}
-                  $edit={row.status === "edit"}
-                  style={{ flex: "1.5" }}
-                >
-                  {row.status}
-                </StatusUpdate>
+              <StatusUpdate
+                $approved={row.status === "approved"}
+                $missing={row.status === "Missing"}
+                $missingurg={row.status === "Missing urgently"}
+                $edit={row.status === "edit"}
+                style={{ flex: "1.5" }}
+              >
+                {row.status}
+              </StatusUpdate>
               <div
                 style={{
                   flex: "1",
