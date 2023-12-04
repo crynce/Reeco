@@ -15,6 +15,9 @@ const BgWall = styled.div`
 const StepDivCont = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    display:none;
+  }
 `;
 
 const StepDiv = styled.div`
@@ -38,7 +41,7 @@ export const PrimaryButton = styled.button`
 
   font-size: 1em;
   margin: 1em;
-  padding: 0.25em 1em;
+  // padding: 0.25em 1em;
   border: 2px solid #1e633f;
   border-radius: 50px;
   cursor: pointer;

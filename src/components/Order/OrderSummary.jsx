@@ -48,6 +48,11 @@ const OrderSummaryItem = styled.div`
   &:not(:last-child) {
     border-right: 2px solid #d6cccc;
   }
+  @media (max-width: 768px) {
+    &:not(:first-child):not(:last-child) {
+      display: none;
+    }
+  }
 `;
 const ItemTitle = styled.div`
   color: #9b9797;

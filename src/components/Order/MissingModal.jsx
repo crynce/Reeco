@@ -15,6 +15,10 @@ const Modal = styled(Card)`
   top: 40%;
   left: 35%;
   display: block;
+  @media (max-width: 768px) {
+    top: 28%;
+    left: 15%;
+  }
 `;
 const OverlayDiv = styled.div`
   position: fixed;
@@ -30,8 +34,8 @@ export default function MissingModal() {
   const initVal = useSelector((state) => state.overlay);
   console.log(initVal, "shobhit");
   //handlers
-    const closeHandler = (e, val) => {
-      e.stopPropagation()
+  const closeHandler = (e, val) => {
+    e.stopPropagation();
     dispatch(manageOverlay(false));
     if (val === "yes") {
       dispatch(

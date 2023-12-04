@@ -39,6 +39,12 @@ const TableHead = styled.thead`
 const TableHeading = styled.th`
   padding: 10px;
   text-align: center;
+  @media (max-width: 768px) {
+    &:not(:nth-child(5n+2)){
+      display:none;
+    }
+  }
+  }
 `;
 
 const TableRow = styled.tr`
@@ -51,6 +57,16 @@ const TableData = styled.td`
     background-color: #f9f9f9;
   }
   border-bottom: 1px solid #bbbbbb;
+  @media (max-width: 768px) {
+    // &:not(:first-child):not(:last-child) {
+    //   display: none;
+    // }
+    &:not(:nth-child(5n+2)){
+      display:none;
+    }
+  }
+
+  }
 `;
 const TableDataStatus = styled(TableData)`
   display: flex;
