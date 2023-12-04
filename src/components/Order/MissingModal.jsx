@@ -30,7 +30,8 @@ export default function MissingModal() {
   const initVal = useSelector((state) => state.overlay);
   console.log(initVal, "shobhit");
   //handlers
-  const closeHandler = (e, val) => {
+    const closeHandler = (e, val) => {
+      e.stopPropagation()
     dispatch(manageOverlay(false));
     if (val === "yes") {
       dispatch(
@@ -50,7 +51,7 @@ export default function MissingModal() {
   };
   return (
     <>
-      <OverlayDiv>
+      <OverlayDiv onClick={closeHandler}>
         <Modal>
           <div
             style={{
